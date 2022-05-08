@@ -3,7 +3,7 @@ import useTodoContext from '../../context/todoStore/hooks'
 import {
     addJob,
     deleteJob,
-    setJob,
+    setJob
 } from '../../context/todoStore/state/actions'
 import TodoItem from '../TodoItem'
 
@@ -23,12 +23,12 @@ const Todo = () => {
     // Bọc useCallBack để tránh re-render ToDoItem không cần thiết, khi áp dụng React.memo cho ToDoItem
     const handleRemoveJob = useCallback(
         (job: string) => dispatch(deleteJob(job)),
-        []
+        [dispatch]
     )
 
     const total = useMemo(
         () =>
-            jobs.reduce((total: number, job: { random: number }) => {
+            jobs.reduce((total, job) => {
                 total += job.random
                 console.log('tính toán lại...')
                 return total
@@ -51,7 +51,7 @@ const Todo = () => {
                 </button>
             </span>
             <ul>
-                {jobs.map((job: string, key: number) => (
+                {jobs.map((job, key) => (
                     <li key={key}>
                         <TodoItem job={job} onRemove={handleRemoveJob} />
                     </li>

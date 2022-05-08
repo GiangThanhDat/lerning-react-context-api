@@ -1,4 +1,4 @@
-const logger = (reducer) => (prevState: any, action: { type: any }) => {
+const logger = (reducer) => (prevState, action) => {
     console.group(action.type)
 
     // prev state
