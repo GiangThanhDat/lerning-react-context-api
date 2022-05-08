@@ -25,10 +25,9 @@ const Todo = () => {
     const handleChangeJob = ({ target }) => dispatch(setJob(target.value))
 
     // Bọc useCallBack để tránh re-render ToDoItem không cần thiết, khi áp dụng React.memo cho ToDoItem
-    const handleRemoveJob = useCallback(
-        (job) => dispatch(deleteJob(job)),
-        [dispatch]
-    )
+    const handleRemoveJob = useCallback((job) => dispatch(deleteJob(job)), [
+        dispatch
+    ])
 
     const total = useMemo(
         () =>
@@ -42,7 +41,7 @@ const Todo = () => {
 
     return (
         <div>
-            <h1>Todo App</h1>
+            <h1>TODO APP</h1>
             <div
                 style={{
                     display: 'flex',
