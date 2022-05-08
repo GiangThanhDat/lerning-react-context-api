@@ -13,6 +13,10 @@ const Todo = () => {
     const inputJob = useRef(undefined)
 
     const handleAddJob = () => {
+        if (!job) {
+            alert('Tên công việc không nên để trống')
+            return
+        }
         dispatch(addJob({ name: job, random: Math.floor(Math.random() * 10) }))
         dispatch(setJob(''))
         inputJob.current.focus()
@@ -37,26 +41,30 @@ const Todo = () => {
     )
 
     return (
-        <div style={{ marginLeft: 50 }}>
-            <h1>Todo app</h1>
-            <input
-                style={{ width: '60%' }}
-                ref={inputJob}
-                value={job}
-                onChange={handleChangeJob}
-            />
-            <span>
-                <button style={{ width: '20%' }} onClick={handleAddJob}>
+        <div>
+            <h1>Todo App</h1>
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center'
+                }}
+            >
+                <input
+                    style={{ width: '70%' }}
+                    ref={inputJob}
+                    value={job}
+                    onChange={handleChangeJob}
+                />
+                <button style={{ width: 100 }} onClick={handleAddJob}>
                     add
                 </button>
-            </span>
-            <ul>
-                {jobs.map((job, key) => (
-                    <li key={key}>
-                        <TodoItem job={job} onRemove={handleRemoveJob} />
-                    </li>
-                ))}
-            </ul>
+            </div>
+
+            {jobs.map((job, key) => (
+                <TodoItem job={job} onRemove={handleRemoveJob} />
+            ))}
+
             <h3>{total}</h3>
         </div>
     )

@@ -6,17 +6,13 @@ const TodoItem = ({ job, onRemove }) => {
         <div
             style={{
                 display: 'flex',
-                justifyContent: 'flex-start',
-                alignItems: 'center',
+                justifyContent: 'space-between',
+                alignItems: 'center'
             }}
         >
-            <div style={{ width: '30%' }}>
-                <p>{job.name}</p>
-            </div>
-            <div style={{ width: '30%' }}>
-                <p>{job.random}</p>
-            </div>
-            <button style={{ width: '20%' }} onClick={() => onRemove(job)}>
+            <p style={{ width: '35%' }}>{job.name}</p>
+            <p style={{ width: '35%' }}>{job.random}</p>
+            <button style={{ width: 100 }} onClick={() => onRemove(job)}>
                 x
             </button>
         </div>
